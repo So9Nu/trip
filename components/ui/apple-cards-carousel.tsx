@@ -5,6 +5,7 @@ import React, {
   useState,
   createContext,
   useContext,
+  JSX,
 } from "react";
 import {
   IconArrowNarrowLeft,
@@ -17,7 +18,7 @@ import Image, { ImageProps } from "next/image";
 import { useOutsideClick } from "@/hooks/use-outside-click";
 
 interface CarouselProps {
-  items: JSX.Element[];
+  items:JSX.Element[];
   initialScroll?: number;
 }
 
@@ -37,7 +38,7 @@ export const CarouselContext = createContext<{
 });
 
 export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
-  const carouselRef = React.useRef<HTMLDivElement>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = React.useState(false);
   const [canScrollRight, setCanScrollRight] = React.useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -121,7 +122,7 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
                     duration: 0.5,
                     delay: 0.2 * index,
                     ease: "easeOut",
-                    once: true,
+                    // once:true,
                   },
                 }}
                 key={"card" + index}
@@ -163,7 +164,7 @@ export const Card = ({
   layout?: boolean;
 }) => {
   const [open, setOpen] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<any>(null);
   const { onCardClose, currentIndex } = useContext(CarouselContext);
 
   useEffect(() => {
