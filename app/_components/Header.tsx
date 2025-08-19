@@ -39,7 +39,7 @@ function Header() {
           </Link>
         ))}
       </div>
-      <Button>Get Started</Button>
+      <Button>Explore</Button>
       </div>
   )
 }
